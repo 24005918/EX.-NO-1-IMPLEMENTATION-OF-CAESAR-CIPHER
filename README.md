@@ -16,30 +16,28 @@ STEP-4: Else subtract the key from the plain text.
 STEP-5: Display the cipher text obtained above.
 
 ## PROGRAM:
-```#A python program to illustrate Caesar Cipher Technique
-def encrypt(text,s):
-	result = ""
+```#A C program to illustrate Caesar Cipher Technique
+#include <stdio.h>
+#include <string.h>
+void caesarCipher(char *text, int shift)
+{
+ for (int i = 0; text[i]; i++)
+ {
+ if (text[i] >= 'A' && text[i] <= 'Z')
+ text[i] = ((text[i]- 'A' + shift) % 26) + 'A';
 
-	# traverse text
-	for i in range(len(text)):
-		char = text[i]
+ }
+}
+int main()
+{
+ char text[] = "SANTHOSH V";
+ caesarCipher(text, 3);
+ printf("Encrypted Message: %s\n", text);
+ caesarCipher(text,-3);
+ printf("Decrypted Message: %s\n", text);
+ return 0;
 
-		# Encrypt uppercase characters
-		if (char.isupper()):
-			result += chr((ord(char) + s-65) % 26 + 65)
-
-		# Encrypt lowercase characters
-		else:
-			result += chr((ord(char) + s - 97) % 26 + 97)
-
-	return result
-
-#check the above function
-text = "ATTACKATONCE"
-s = 4
-print ("Text : " + text)
-print ("Shift : " + str(s))
-print ("Cipher: " + encrypt(text,s))
+}
 
 ```
 
